@@ -28,4 +28,9 @@ void main() {
       expect(const HexEncoder(upperCase: true).convert(bytes), equals(hex.toUpperCase()));
     });
   });
+
+  test("invalid characters", () {
+    expect(() => HEX.decode("xx"), throwsFormatException);
+    expect(() => HEX.encode(const [256]), throwsFormatException);
+  });
 }

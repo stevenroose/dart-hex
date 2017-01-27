@@ -34,6 +34,9 @@ class HexEncoder extends Converter<List<int>, String> {
   String convert(List<int> bytes) {
     StringBuffer buffer = new StringBuffer();
     for (int part in bytes) {
+      if (part & 0xff != part) {
+        throw new FormatException("Non-byte integer detected");
+      }
       buffer.write('${part < 16 ? '0' : ''}${part.toRadixString(16)}');
     }
     if(upperCase) {
@@ -51,16 +54,19 @@ class HexDecoder extends Converter<String, List<int>> {
 
   @override
   List<int> convert(String hex) {
-    hex = hex.replaceAll(" ", "");
-    hex = hex.toLowerCase();
-    if(hex.length % 2 != 0) {
-      hex = "0" + hex;
+    String str = hex.replaceAll(" ", "");
+    str = str.toLowerCase();
+    if(str.length % 2 != 0) {
+      str = "0" + str;
     }
-    Uint8List result = new Uint8List(hex.length ~/ 2);
+    Uint8List result = new Uint8List(str.length ~/ 2);
     for(int i = 0 ; i < result.length ; i++) {
-      int value = (_ALPHABET.indexOf(hex[i*2]) << 4) //= byte[0] * 16
-          + _ALPHABET.indexOf(hex[i*2+1]);
-      result[i] = value;
+      int firstDigit = _ALPHABET.indexOf(str[i*2]);
+      int secondDigit = _ALPHABET.indexOf(str[i*2+1]);
+      if (firstDigit == -1 || secondDigit == -1) {
+        throw new FormatException("Non-hex character detected in $hex");
+      }
+      result[i] = (firstDigit << 4) + secondDigit;
     }
     return result;
   }

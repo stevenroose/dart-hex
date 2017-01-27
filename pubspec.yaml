@@ -1,6 +1,6 @@
 name: hex
 description: Easy hexadecimal convertion using dart:convert API.
-version: 0.1.0
+version: 0.1.1
 author: Steven Roose <stevenroose@gmail.com>
 homepage: https://github.com/stevenroose/dart-hex
 
