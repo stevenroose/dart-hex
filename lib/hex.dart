@@ -18,7 +18,7 @@ class HexCodec extends Codec<List<int>, String> {
   Converter<List<int>, String> get encoder => const HexEncoder();
 
   @override
-  Converter<String, List<int>> get decoder => new HexDecoder();
+  Converter<String, List<int>> get decoder => const HexDecoder();
 
 }
 
