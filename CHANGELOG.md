@@ -1,8 +1,9 @@
 # Changelog
 
-## 0.2.0-nullsafety.0 (2020-11-22)
+## 0.2.0 (2021-03-09)
 
- - Pre-release for the null safety migration of this package.
+ - Add null safety support
+ - Require Dart SDK 2.12.0 or higher
 
 ## 0.1.2 (2018-08-13)
 

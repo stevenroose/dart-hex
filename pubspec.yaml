@@ -1,11 +1,11 @@
 name: hex
 description: Easy hexadecimal convertion using dart:convert API.
-version: 0.2.0-nullsafety.0
+version: 0.2.0
 author: Steven Roose <stevenroose@gmail.com>
 homepage: https://github.com/stevenroose/dart-hex
 
 environment:
-  sdk: '>=2.12.0-0 <3.0.0'
+  sdk: '>=2.12.0 <3.0.0'
 
 dev_dependencies:
-  test: ^1.16.0-nullsafety
+  test: ^1.16.0
